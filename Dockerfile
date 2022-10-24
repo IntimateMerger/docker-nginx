@@ -68,10 +68,9 @@ RUN GPG_KEYS=13C82A63B603576156E30A4EA0EA981B66B0D967 \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& found=''; \
 	for server in \
-		ha.pool.sks-keyservers.net \
-		hkp://keyserver.ubuntu.com:80 \
-		hkp://p80.pool.sks-keyservers.net:80 \
 		pgp.mit.edu \
+		keyserver.ubuntu.com \
+		pgp.surf.nl \
 	; do \
 		echo "Fetching GPG key $GPG_KEYS from $server"; \
 		gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
