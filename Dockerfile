@@ -1,10 +1,10 @@
-ARG ALPINE_VERSION="3.13"
+ARG ALPINE_VERSION="3.16"
 FROM alpine:${ALPINE_VERSION}
 
 ARG ALPINE_VERSION
-ARG NGINX_VERSION="1.20.1"
-ARG GEOIP2_VERSION="3.3"
-ARG HEADERS_MORE_VERSION="0.33"
+ARG NGINX_VERSION="1.22.1"
+ARG GEOIP2_VERSION="3.4"
+ARG HEADERS_MORE_VERSION="0.34"
 ARG CONFIG_OPTIONS="\
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
@@ -47,9 +47,8 @@ LABEL nginx.image="alpine:$ALPINE_VERSION" \
       nginx.config.options="$CONFIG_OPTIONS"
 
 
-RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+RUN GPG_KEYS=13C82A63B603576156E30A4EA0EA981B66B0D967 \
 	&& set -x \
-	&& apk update \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
 	&& apk add --no-cache --virtual .build-deps \
@@ -61,7 +60,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		zlib-dev \
 		linux-headers \
 		curl \
-		gnupg1 \
+		gnupg \
 		gd-dev \
 		libmaxminddb-dev \
 	&& curl -sfSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
