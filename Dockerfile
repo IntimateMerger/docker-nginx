@@ -1,10 +1,10 @@
-ARG ALPINE_VERSION="3.16"
+ARG ALPINE_VERSION="3.23"
 FROM alpine:${ALPINE_VERSION}
 
 ARG ALPINE_VERSION
-ARG NGINX_VERSION="1.22.1"
+ARG NGINX_VERSION="1.30.1"
 ARG GEOIP2_VERSION="3.4"
-ARG HEADERS_MORE_VERSION="0.34"
+ARG HEADERS_MORE_VERSION="0.39"
 ARG CONFIG_OPTIONS="\
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
@@ -47,7 +47,7 @@ LABEL nginx.image="alpine:$ALPINE_VERSION" \
       nginx.config.options="$CONFIG_OPTIONS"
 
 
-RUN GPG_KEYS=13C82A63B603576156E30A4EA0EA981B66B0D967 \
+RUN GPG_KEYS=D6786CE303D9A9022998DC6CC8464D549AF75C0A \
 	&& set -x \
 	&& addgroup -S nginx \
 	&& adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
